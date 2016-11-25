@@ -45,11 +45,12 @@
     "cookie-parser": "^1.4.3",
     "express": "^4.14.0",
     "express-session": "^1.14.2",
+    "mongodb": "^2.2.11",
     "morgan": "^1.7.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "serve-favicon": "^2.3.2"
-  },  
+  },
   "engines": {
     "node": "4.4.2"
   }
