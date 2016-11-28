@@ -21,7 +21,7 @@ var HomeContainer = React.createClass({
 	},
 	handleEnter: function(e) {
 		// handle input submission
-		if (e.charCode === 13) {
+		if (e.charCode === 13 && this.state.location.length > 0) {
 			var location = this.state.location; // cache state
 			this.setState({
 				location: ''
