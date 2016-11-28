@@ -1,0 +1,17 @@
+@import 'partials/_header.scss';
+@import 'partials/_home.scss';
+
+@font-face {
+	font-family: Kirvy-Thin;
+	src: url(fonts/Kirvy-Thin.otf);
+}
+
+html {
+	height: 100%;
+}
+
+body {
+	min-height: 100%;
+	color: #fff;
+	font-family: 'Open Sans', sans-serif;
+}
