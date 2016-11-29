@@ -11,7 +11,7 @@
 	font-family: Kirvy-Thin;
 }
 
-.nav-life {
+.nav-logo span {
 	color: red;
 	margin-left: 1px;
 }
@@ -33,4 +33,9 @@
 		color: #333;
 		background: #fff;
 	}
+}
+
+.active-nav-link {
+	display: none;
+	border: none;
 }
