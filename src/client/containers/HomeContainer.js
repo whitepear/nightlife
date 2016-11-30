@@ -26,7 +26,7 @@ var HomeContainer = React.createClass({
 			this.setState({
 				location: ''
 			}); // reset state		
-			this.context.router.push('/city/' + location);
+			this.context.router.push('/venues/' + location);
 		}
 	},
 	render: function() {

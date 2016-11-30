@@ -15,7 +15,7 @@ function Login(props) {
 			    <label htmlFor="login-password">Password:</label>
 			    <input type="password" className="form-control" id="login-password" />
 			  </div>
-				<button type="submit" className="btn btn-default form-submit">Log In</button>
+				<button type="submit" className="btn btn-default form-submit">Submit</button>
 			</form>
 		</div>
 	)

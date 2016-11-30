@@ -17,6 +17,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
 
 // Utilise connection pooling, initialise app after db connection
 // & session-store is established
@@ -36,8 +37,8 @@ MongoClient.connect('mongodb://localhost:27017/nightlife', function(err, databas
   console.log('Server is running...');
 });
 
-app.get('/', function(req, res) {
-	res.send('hi.');
+app.get('*', function(req, res) {
+	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
 
