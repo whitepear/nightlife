@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Yelp = require('yelp');
 var session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
 var MongoStore = require('connect-mongo')(session); // require and call with session in order to allow connect-mongo middleware to access sessions
@@ -41,6 +42,22 @@ app.get('*', function(req, res) {
 	res.sendFile(path.join(__dirname + '/public/index.html'));
 });
 
+app.post('/yelpFetch/:location', function(req, res, next) {
+	var yelp = new Yelp({
+	  consumer_key: 'REDACTED',
+	  consumer_secret: 'REDACTED',
+	  token: 'REDACTED',
+	  token_secret: 'REDACTED',
+	});
+
+	yelp.search({ term: 'bar', location: req.params.location })
+	.then(function (data) {
+	  res.send(data);
+	})
+	.catch(function (err) {
+	  next(err);
+	});
+});
 
 // catch 404 and forward to error handler
 // app.use(function(req, res, next) {
