@@ -1,5 +1,4 @@
 var React = require('react');
-var Loading = require('../components/Loading.js');
 var Venues = require('../components/Venues.js');
 var axios = require('axios');
 
@@ -24,7 +23,7 @@ var VenuesContainer = React.createClass({
 		return (
 			<div>
 				<div className="venues-bg"></div>
-				{ this.state.loading ? <Loading /> : <Venues venueList={this.state.venueList} /> }
+				<Venues venueList={this.state.venueList} loading={this.state.loading} />
 			</div>
 		)			
 	}
