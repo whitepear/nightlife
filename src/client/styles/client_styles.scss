@@ -3,12 +3,18 @@
 @import 'partials/_login.scss';
 @import 'partials/_register.scss';
 @import 'partials/_forms.scss';
+@import 'partials/_loading.scss';
 @import 'partials/_venues.scss';
 @import 'partials/_venue.scss';
 
 @font-face {
 	font-family: Kirvy-Thin;
 	src: url(fonts/Kirvy-Thin.otf);
+}
+
+@font-face {
+	font-family: Icomoon-Search;
+	src: url(fonts/icomoon-search.ttf);
 }
 
 html {

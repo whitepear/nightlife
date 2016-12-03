@@ -9,8 +9,12 @@ function Venues(props) {
 													return <Venue venue={venue} key={key++} />
 									 			});
 	return (
-		<div className="venues-container">			
-			<input className="venues-search" type="text" />
+		<div className="venues-container">	
+			<div className="venues-bg"></div>		
+			<div className="venues-input-container">
+				<input className="venues-search" placeholder="Check another location" type="text" />
+				<div className="search-icon">&#xf002;</div>
+			</div>
 			<h1 className="venues-header">Venues</h1>
 			<div className="venues-list">
 				{ props.loading ? <Loading /> : venueListMarkup }

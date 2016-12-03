@@ -21,8 +21,7 @@ var VenuesContainer = React.createClass({
 	},
 	render: function() {
 		return (
-			<div>
-				<div className="venues-bg"></div>
+			<div>				
 				<Venues venueList={this.state.venueList} loading={this.state.loading} />
 			</div>
 		)			

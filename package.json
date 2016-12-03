@@ -2,7 +2,7 @@
   "name": "nightlife",
   "version": "1.0.0",
   "description": "Fullstack javascript application for tracking nightlife activity.",
-  "main": "index.js",
+  "main": "src/server/server.js",
   "scripts": {
     "start": "webpack-dev-server --inline"
   },

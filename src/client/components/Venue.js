@@ -4,7 +4,7 @@ var PropTypes = React.PropTypes;
 function Venue(props) {
 	return (
 		<div className="venue-container">						
-			<img src={props.venue.image_url} alt="Venue image."/>
+			<img src={props.venue.image_url} className="venue-thumb" alt="Venue image."/>
 			<div className="venue-description">
 				<a href={props.venue.url} target="_blank">	
 					<div className="venue-title">{props.venue.name}</div>
