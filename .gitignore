@@ -1,4 +1,3 @@
 node_modules
-src/client/dist
-src/data
-src/public
+src/server/data
+src/server/public
