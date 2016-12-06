@@ -1,0 +1,2 @@
+// Validate registration form data
+
