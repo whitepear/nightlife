@@ -36,14 +36,14 @@ module.exports.registrationValidation = function(formInfo) {
 		return {
 			validationPassed: false,
 			validationMessage: 'Passwords must contain at least one letter and one number.'
-		}
+		};
 	}
 
 	if (/[^a-zA-Z0-9]/.test(password)) {
 		return {
 			validationPassed: false,
 			validationMessage: 'Passwords may only contain letters or numbers.'
-		}
+		};
 	}
 
 	if ( !(password === passwordRepeat) ) {
@@ -52,4 +52,8 @@ module.exports.registrationValidation = function(formInfo) {
 			validationMessage: 'The passwords provided do not match.'
 		};
 	}	
+
+	return {
+		validationPassed: true
+	};
 }

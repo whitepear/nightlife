@@ -12,6 +12,11 @@ var routes = require('./routes/index.js');
 var app = express();
 var db; // database variable
 
+app.use(function(req, res, next) {
+	req.db = db;
+	next();
+});
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
