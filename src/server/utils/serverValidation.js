@@ -35,16 +35,18 @@ module.exports.registrationValidation = function(userInfo, db, callback) {
 	}	
 
 	// check that username and email are not already registered
-	db.collection('users').find({ $or: [
+	db.collection('users').findOne({ $or: [
   	{ "username": userInfo.username },
  		{ "email": userInfo.email }
-  ]}).count()
-	.then(function(count) {
-		if (count !== 0) {
-			return callback(false, 'The username or email address provided has already been registered.');
-		} else {
+  ]})
+	.then(function(doc) {
+		if (doc === null) {
 			return callback(true);
-		}	
+		} else if (doc.username === userInfo.username) {
+			return callback(false, 'The username provided has already been registered.');
+		} else if (doc.email === userInfo.email) {
+			return callback(false, 'The email provided has already been registered.');
+		}
 	})
 	.catch(function(err) {
 		console.log('Username/email database check error: ', err);
