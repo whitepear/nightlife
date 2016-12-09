@@ -9,11 +9,11 @@ function Login(props) {
 			<form action="/login" method="POST">
 				<div className="form-group">
 					<label htmlFor="login-username">Username:</label>
-	    		<input type="text" className="form-control" id="login-username" />
+	    		<input type="text" className="form-control" id="login-username" required />
 				</div>
 				<div className="form-group">
 			    <label htmlFor="login-password">Password:</label>
-			    <input type="password" className="form-control" id="login-password" />
+			    <input type="password" className="form-control" id="login-password" required />
 			  </div>
 				<button type="submit" className="btn btn-default form-submit">Submit</button>
 			</form>

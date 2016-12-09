@@ -5,28 +5,38 @@ function Register(props) {
 	return (
 		<div>
 			<div className="register-bg"></div>
-			<h1 className="form-header">Register</h1>
-			<form action="/register" method="POST">
+			<h1 className="form-header">Register</h1>			
+			<form action="/register" method="POST" onSubmit={props.onRegSubmit}>
 				<div className="form-group">
-					<label htmlFor="register-email">Email:</label>
-		  		<input type="email" className="form-control" id="register-email" />
+					<label htmlFor="registerEmail">Email:</label>
+		  		<input type="email" className="form-control" id="registerEmail" onChange={props.onFieldChange} required />
 				</div>
 				<div className="form-group">
-					<label htmlFor="register-username">Username:</label>
-		  		<input type="text" className="form-control" id="register-username" />
+					<label htmlFor="registerUsername">Username:</label>
+		  		<input type="text" className="form-control" id="registerUsername" onChange={props.onFieldChange} required />
 				</div>
 				<div className="form-group">
-			    <label htmlFor="register-password">Password:</label>
-			    <input type="password" className="form-control" id="register-password" />
+			    <label htmlFor="registerPassword">Password:</label>
+			    <input type="password" className="form-control" id="registerPassword" onChange={props.onFieldChange} placeholder="8 characters minimum." required />
 			  </div>
 			  <div className="form-group">
-			    <label htmlFor="register-password-repeat">Repeat Password:</label>
-			    <input type="password" className="form-control" id="register-password-repeat" />
+			    <label htmlFor="registerPasswordRepeat">Repeat Password:</label>
+			    <input type="password" className="form-control" id="registerPasswordRepeat" onChange={props.onFieldChange} placeholder="Passwords may only contain letters and numbers." required />
 			  </div>
-				<button type="submit" className="btn btn-default form-submit">Register</button>
-			</form>
+			  <div className={(props.validationMessage ? 'show ' : '') + "registration-message"}>
+					{props.validationMessage}
+				</div>
+				<button type="submit" className="btn btn-default form-submit" disabled={props.validationPassed}>Register</button>
+			</form>			
 		</div>
 	)	
 }
+
+Register.propTypes = {
+	onFieldChange: PropTypes.func.isRequired,
+	onRegSubmit: PropTypes.func.isRequired,
+	validationMessage: PropTypes.string.isRequired,
+	validationPassed: PropTypes.bool.isRequired
+};
 
 module.exports = Register;
