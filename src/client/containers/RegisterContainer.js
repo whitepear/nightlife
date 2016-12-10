@@ -24,6 +24,8 @@ var RegisterContainer = React.createClass({
 	},
 	handleRegSubmit: function(e) {
 		e.preventDefault();
+		var prevPath = this.props.location.query.prevPath;
+		
 		var validationResult = registrationValidation(this.state);
 		if (validationResult.validationPassed) {
 			this.setState({
@@ -34,12 +36,16 @@ var RegisterContainer = React.createClass({
 				.then(function(res) {
 					if (res.data.serverValidationPassed) {
 						// validation passed, user registered
-						// redirect to index page				
+						// redirect user				
 						this.setState({
 							validationMessage: res.data.serverValidationMessage
 						}, function() {
 							setTimeout(function() {
-								this.context.router.push('/');
+								if (prevPath === undefined || prevPath === '/login') {
+									this.context.router.push('/');
+								} else {
+									this.context.router.push(prevPath);
+								}								
 							}.bind(this), 1500);
 						});
 					} else {
