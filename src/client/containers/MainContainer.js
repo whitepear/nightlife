@@ -5,7 +5,7 @@ var MainContainer = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Header />		
+				<Header pathname={this.props.location.pathname} />		
 				<div className="container">						
 					{this.props.children}							
 				</div>
