@@ -57,3 +57,19 @@ module.exports.registrationValidation = function(formInfo) {
 		validationPassed: true
 	};
 }
+
+module.exports.loginValidation = function(formInfo) {
+	var username = formInfo.loginUsername.trim();
+	var password = formInfo.loginPassword;
+
+	if(!username || !password) {
+		return {
+			validationPassed: false,
+			validationMessage: 'Please fill out all fields before submitting.'
+		};
+	}
+
+	return {
+		validationPassed: true
+	};
+}
