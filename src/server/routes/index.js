@@ -3,6 +3,7 @@ var router = express.Router();
 var path = require('path');
 var serverValidation = require('../utils/serverValidation.js');
 var registrationValidation = serverValidation.registrationValidation;
+var loginValidation = serverValidation.loginValidation;
 var registerUser = require('../utils/registerUser.js');
 var Yelp = require('yelp');
 
@@ -41,6 +42,28 @@ router.post('/register', function(req, res, next) {
 			});
 		}
 	});	
+});
+
+router.post('/login', function(req, res, next) {
+	var userDetails = {	
+		username: req.body.loginUsername.trim(),
+		password: req.body.loginPassword
+	};
+
+	loginValidation(userDetails, req.db, function(validationPassed, validationMessage) {
+		if (validationPassed) {
+			req.session.userId = validationMessage;
+			res.json({
+				serverValidationMessage: 'Login successful!',
+				serverValidationPassed: true
+			});
+		} else {
+			res.json({
+				serverValidationMessage: validationMessage,
+				serverValidationPassed: false
+			});
+		}
+	});
 });
 
 router.post('/yelpFetch/:location', function(req, res, next) {

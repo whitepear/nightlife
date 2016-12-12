@@ -31,7 +31,8 @@ var RegisterContainer = React.createClass({
 			this.setState({
 				validationPassed: true
 			}, function() {
-				// client side validation completed, pass form data to server for validation and registration
+				// client side validation completed, pass form data to server for
+				// further validation and registration
 				axios.post('/register', this.state)
 				.then(function(res) {
 					if (res.data.serverValidationPassed) {
@@ -55,16 +56,18 @@ var RegisterContainer = React.createClass({
 							validationPassed: false					
 						});
 					}
-				}.bind(this))
+				}.bind(this)) // END.then
 				.catch(function(err) {
+					// catch axios post errors
 					console.log(err);
 					this.setState({
 						validationMessage: 'A server error occurred while processing your request. Please try again later.',
 						validationPassed: false
 					});
-				}.bind(this));
-			}.bind(this));			
+				}.bind(this)); // END.catch
+			}.bind(this)); // END.setState callback			
 		} else {
+			// failed client-side validation
 			this.setState({
 				validationMessage: validationResult.validationMessage
 			});
