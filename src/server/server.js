@@ -17,6 +17,13 @@ app.use(function(req, res, next) {
 	next();
 });
 
+app.use(session({
+  secret: 'secret_placeholder',
+  store: new MongoStore({url: 'mongodb://localhost:27017/nightlife'}),
+  resave: true,
+  saveUninitialized: false
+}));
+
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
@@ -31,15 +38,6 @@ MongoClient.connect('mongodb://localhost:27017/nightlife', function(err, databas
   if(err) throw err;
 
   db = database;
-  app.use(session({
-	  secret: 'secret_placeholder',
-	  store: new MongoStore({
-	  	db: db
-		}),
-	  resave: true,
-	  saveUninitialized: false
-	}));
-
   app.listen(3000, console.log('Server is running...'));  
 });
 
