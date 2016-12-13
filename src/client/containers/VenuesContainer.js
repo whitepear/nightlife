@@ -3,13 +3,26 @@ var Venues = require('../components/Venues.js');
 var axios = require('axios');
 
 var VenuesContainer = React.createClass({
+	contextTypes: {
+		router: React.PropTypes.object.isRequired
+	},
 	getInitialState: function() {
 		return {	
 			loading: true,
+			loggedIn: false,
 			venueList: []
 		}
 	},
 	componentDidMount: function() {
+		// check if user is logged in
+		axios.post('/checkLoginStatus')
+		.then(function(loginRes) {
+			this.setState({
+				loggedIn: loginRes.data
+			});
+		}.bind(this));
+
+		// fetch venue info for city provided
 		axios.post('/yelpFetch/' + this.props.params.location)
 		.then(function(yelpRes) {
 			this.setState({
@@ -40,6 +53,17 @@ var VenuesContainer = React.createClass({
 			this.handleYelpSearch();
 		}
 	},
+	// handleAttendingClick: function(e) {
+	// 	if (this.state.loggedIn) {
+	// 		// increment counter, colour green
+	// 		axios.post('/attending/' + e.target.id)
+	// 		.then(function(attendingRes) {
+
+	// 		});
+	// 	} else {
+	// 		this.context.router.push('/login?prevPath=' + this.props.location.pathname);
+	// 	}
+	// },
 	render: function() {
 		return (
 			<div>				
@@ -47,7 +71,8 @@ var VenuesContainer = React.createClass({
 					venueList={this.state.venueList} 
 					loading={this.state.loading} 
 					onYelpSearch={this.handleYelpSearch} 
-					onEnter={this.handleEnter} />
+					onEnter={this.handleEnter} 
+					onAttendingClick={this.handleAttendingClick} />
 			</div>
 		)			
 	}

@@ -66,6 +66,14 @@ router.post('/login', function(req, res, next) {
 	});
 });
 
+router.post('/checkLoginStatus', function(req, res, next) {
+	if (req.session && req.session.userId) {
+		res.send(true);
+	} else {
+		res.send(false);
+	}
+});
+
 router.post('/yelpFetch/:location', function(req, res, next) {
 	var yelp = new Yelp({
 	  consumer_key: 'REDACTED',
