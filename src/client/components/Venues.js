@@ -6,7 +6,9 @@ var Venue = require('./Venue.js');
 function Venues(props) {
 	var key = 0;
 	var venueListMarkup = props.venueList.map(function(venue) {
-													return <Venue venue={venue} key={key++} />
+													return <Venue venue={venue}
+																			  key={key++}
+																			  onAttendingClick={props.onAttendingClick} />
 									 			});
 	return (
 		<div className="venues-container">	
@@ -27,6 +29,7 @@ Venues.propTypes = {
 	loading: PropTypes.bool.isRequired,
 	venueList: PropTypes.array.isRequired,
 	onYelpSearch: PropTypes.func.isRequired,
+	onAttendingClick: PropTypes.func.isRequired,
 	onEnter: PropTypes.func.isRequired
 };
 
