@@ -44,10 +44,13 @@ var VenuesContainer = React.createClass({
 			var searchValue = document.getElementById('venuesSearchBar').value;
 			axios.post('/yelpFetch/' + searchValue)
 			.then(function(yelpRes) {
-				this.setState({
-					loading: false,
-					venueList: yelpRes.data.businesses
-				});
+				this.context.router.push('/venues/' + searchValue);
+				getAttendees(yelpRes, function(venueList) {
+					this.setState({
+						loading: false,
+						venueList: venueList
+					});
+				}.bind(this));
 			}.bind(this));
 		}
 	},
