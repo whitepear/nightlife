@@ -1,5 +1,4 @@
 var bcrypt = require('bcryptjs');
-var MongoClient = require('mongodb').MongoClient;
 
 function registerUser(userInfo, db, callback) {
 
@@ -15,8 +14,7 @@ function registerUser(userInfo, db, callback) {
 		var userDocument = {
 			"username": userInfo.username,
 			"email": userInfo.email,
-			"password": userInfo.password,
-			"venues": []
+			"password": userInfo.password
 		};
 
 		// insert into db

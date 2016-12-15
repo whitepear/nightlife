@@ -1,13 +1,16 @@
 var express = require('express');
 var router = express.Router();
 var path = require('path');
+var Yelp = require('yelp');
 var serverValidation = require('../utils/serverValidation.js');
 var registrationValidation = serverValidation.registrationValidation;
 var loginValidation = serverValidation.loginValidation;
 var registerUser = require('../utils/registerUser.js');
-var Yelp = require('yelp');
+var getAttendees = require('../utils/getAttendees.js');
+
 
 router.get('*', function(req, res) {
+	// serve react-client
 	res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 });
 
@@ -75,6 +78,8 @@ router.post('/checkLoginStatus', function(req, res, next) {
 });
 
 router.post('/yelpFetch/:location', function(req, res, next) {
+	// fetch a list of bars from the Yelp API, found at the location
+	// provided by the route parameter
 	var yelp = new Yelp({
 	  consumer_key: 'REDACTED',
 	  consumer_secret: 'REDACTED',
@@ -88,6 +93,14 @@ router.post('/yelpFetch/:location', function(req, res, next) {
 	})
 	.catch(function (err) {
 	  next(err);
+	});
+});
+
+router.post('/getAttendees', function(req, res, next) {
+	// get attendee counts for each venue in the array sent by the client, 
+	// and check if the client is among those attending
+	getAttendees(req, function(attendeeInfo) {
+		res.send(attendeeInfo);
 	});
 });
 
