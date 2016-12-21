@@ -20,7 +20,7 @@ function Venue(props) {
 					<div className="venue-title">{props.venue.name}</div>
 				</a> 
 				<img src={props.venue.rating_img_url} alt="Venue rating."/>
-				<button id={props.venue.id} className={"btn attending-btn" + attendingClass} onClick={props.onAttendingClick}>{props.venue.attendeeCount} Going</button>
+				<button id={props.venue.id} className={"btn attending-btn" + attendingClass} onClick={props.onAttendingClick} disabled={props.attendingLoading}>{props.venue.attendeeCount} Going</button>
 				<div className="venue-snippet">{props.venue.snippet_text}</div>
 			</div>
 		</div>
@@ -29,6 +29,7 @@ function Venue(props) {
 
 Venue.propTypes = {
 	venue: PropTypes.object.isRequired,
+	attendingLoading: PropTypes.bool.isRequired,
 	onAttendingClick: PropTypes.func.isRequired
 };
 

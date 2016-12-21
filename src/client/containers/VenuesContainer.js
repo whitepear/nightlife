@@ -9,6 +9,7 @@ var VenuesContainer = React.createClass({
 	getInitialState: function() {
 		return {	
 			loading: true,
+			attendingLoading: false,
 			loggedIn: false,
 			venueList: []
 		}
@@ -47,7 +48,7 @@ var VenuesContainer = React.createClass({
 			// fetch venue info for the city provided
 			axios.post('/yelpFetch/' + searchValue)
 			.then(function(yelpRes) {
-				// update url with new search value
+				// update url with new city
 				this.context.router.push('/venues/' + searchValue);
 				// add venue attendee counts from the database
 				// to the yelp data
@@ -67,7 +68,24 @@ var VenuesContainer = React.createClass({
 		}
 	},
 	handleAttendingClick: function(e) {
-		
+		// this function adds/removes the user from a venue's attendee count
+		if (this.state.loggedIn) {
+			e.persist();
+			this.setState({
+				attendingLoading: true
+			}, function() {
+				axios.post('/attending/?venueId=' + e.target.id + '&clientAttending=' + e.target.classList.contains('client-attending'), this.state.venueList)
+				.then(function(attendingRes) {
+					this.setState({
+						venueList: attendingRes.data,
+						attendingLoading: false
+					});	
+				}.bind(this));
+			}.bind(this));			
+		} else {
+			// redirect user to login page
+			this.context.router.push('/login?prevPath=' + this.props.location.pathname);
+		}
 	},
 	render: function() {
 		return (
@@ -75,6 +93,7 @@ var VenuesContainer = React.createClass({
 				<Venues 
 					venueList={this.state.venueList} 
 					loading={this.state.loading} 
+					attendingLoading={this.state.attendingLoading}
 					onYelpSearch={this.handleYelpSearch} 
 					onEnter={this.handleEnter} 
 					onAttendingClick={this.handleAttendingClick} />

@@ -100,7 +100,7 @@ router.post('/yelpFetch/:location', function(req, res, next) {
 router.post('/getAttendees', function(req, res, next) {
 	// extract the venues information from the Yelp API data
 	req.body = req.body.data.businesses;
-	// get attendee counts for each venue in the array sent by the client, 
+	// get attendee counts for each venue, 
 	// and check if the client is among those attending
 	getAttendees(req, function(venueList) {
 		res.send(venueList);

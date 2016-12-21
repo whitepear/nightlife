@@ -8,13 +8,14 @@ function Venues(props) {
 	var venueListMarkup = props.venueList.map(function(venue) {
 													return <Venue venue={venue}
 																			  key={key++}
+																			  attendingLoading={props.attendingLoading}
 																			  onAttendingClick={props.onAttendingClick} />
 									 			});
 	return (
 		<div className="venues-container">	
 			<div className="venues-bg"></div>		
 			<div className="venues-input-container">
-				<input className="venues-search" id="venuesSearchBar" disabled={props.loading} onKeyPress={props.onEnter} placeholder="Check another location" type="text" />
+				<input className="venues-search" id="venuesSearchBar" disabled={props.loading || props.attendingLoading} onKeyPress={props.onEnter} placeholder="Check another location" type="text" />
 				<div className="search-icon" onClick={props.onYelpSearch}>&#xf002;</div>
 			</div>
 			<h1 className="venues-header">Venues</h1>
@@ -27,6 +28,7 @@ function Venues(props) {
 
 Venues.propTypes = {
 	loading: PropTypes.bool.isRequired,
+	attendingLoading: PropTypes.bool.isRequired,
 	venueList: PropTypes.array.isRequired,
 	onYelpSearch: PropTypes.func.isRequired,
 	onAttendingClick: PropTypes.func.isRequired,
