@@ -4,7 +4,7 @@
 // the function ultimately returns.
 
 function getAttendees(req, callback) {
-	var venues = req.body.data.businesses;
+	var venues = req.body;
 	var venueIds = venues.map(function(venue) {
 		return venue.id;
 	});

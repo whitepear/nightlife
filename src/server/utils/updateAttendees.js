@@ -24,7 +24,7 @@ function updateAttendees(req, callback) {
 	var currentDate = new Date();
 	currentDate.setHours(5, 0, 0, 0);	// set to 5am, so that all documents are removed daily at 5am	
 	
-	// Set expiry time for document
+	// set expiry time for document
 	updateDoc.$setOnInsert = {
 		insertionTime: currentDate
 	};
@@ -37,10 +37,8 @@ function updateAttendees(req, callback) {
 		function(err, result) {
 			if (err) {
 				console.log(err);
-				return false;
-			} else {
-				return true;
 			}
+			return callback();			
 		}
 	);	
 }
