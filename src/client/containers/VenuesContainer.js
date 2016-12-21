@@ -1,7 +1,6 @@
 var React = require('react');
 var Venues = require('../components/Venues.js');
 var axios = require('axios');
-var getAttendees = require('../utils/getAttendees.js');
 
 var VenuesContainer = React.createClass({
 	contextTypes: {
@@ -26,12 +25,15 @@ var VenuesContainer = React.createClass({
 		// fetch venue info for city provided
 		axios.post('/yelpFetch/' + this.props.params.location)
 		.then(function(yelpRes) {
-			getAttendees(yelpRes, function(venueList) {
+			// add venue attendee counts from the database
+			// to the yelp data
+			axios.post('/getAttendees', yelpRes)
+			.then(function(attendeeRes) {
 				this.setState({
 					loading: false,
-					venueList: venueList
+					venueList: attendeeRes.data
 				});
-			}.bind(this));			
+			}.bind(this));
 		}.bind(this));
 	},
 	handleYelpSearch: function(e) {		
@@ -42,13 +44,18 @@ var VenuesContainer = React.createClass({
 			});
 
 			var searchValue = document.getElementById('venuesSearchBar').value;
+			// fetch venue info for the city provided
 			axios.post('/yelpFetch/' + searchValue)
 			.then(function(yelpRes) {
+				// update url with new search value
 				this.context.router.push('/venues/' + searchValue);
-				getAttendees(yelpRes, function(venueList) {
+				// add venue attendee counts from the database
+				// to the yelp data
+				axios.post('/getAttendees', yelpRes)
+				.then(function(attendeeRes) {
 					this.setState({
 						loading: false,
-						venueList: venueList
+						venueList: attendeeRes.data
 					});
 				}.bind(this));
 			}.bind(this));
@@ -60,15 +67,7 @@ var VenuesContainer = React.createClass({
 		}
 	},
 	handleAttendingClick: function(e) {
-		if (this.state.loggedIn) {
-			// increment counter, colour green
-			axios.post('/attending/' + e.target.id)
-			.then(function(attendingRes) {
-				console.log('attending');
-			});
-		} else {
-			this.context.router.push('/login?prevPath=' + this.props.location.pathname);
-		}
+		
 	},
 	render: function() {
 		return (
