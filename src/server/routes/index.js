@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var path = require('path');
 var Yelp = require('yelp');
+var routeChecks = require('../utils/routeChecks.js');
 var serverValidation = require('../utils/serverValidation.js');
 var registrationValidation = serverValidation.registrationValidation;
 var loginValidation = serverValidation.loginValidation;
@@ -15,7 +16,7 @@ router.get('*', function(req, res) {
 	res.sendFile(path.resolve(__dirname + '/../public/index.html'));
 });
 
-router.post('/register', function(req, res, next) {
+router.post('/register', routeChecks.loggedOut, routeChecks.sanitizeUserInput, function(req, res, next) {
 	// trim fields, except passwords
 	var userInfo = {
 		email: req.body.registerEmail.trim(),
@@ -48,7 +49,7 @@ router.post('/register', function(req, res, next) {
 	});	
 });
 
-router.post('/login', function(req, res, next) {
+router.post('/login', routeChecks.loggedOut, routeChecks.sanitizeUserInput, function(req, res, next) {
 	var userDetails = {	
 		username: req.body.loginUsername.trim(),
 		password: req.body.loginPassword
@@ -78,7 +79,7 @@ router.post('/checkLoginStatus', function(req, res, next) {
 	}
 });
 
-router.post('/yelpFetch/:location', function(req, res, next) {
+router.post('/yelpFetch/:location', routeChecks.sanitizeUserInput, function(req, res, next) {
 	// fetch a list of bars from the Yelp API, found at the location
 	// provided by the route parameter
 	var yelp = new Yelp({
@@ -89,25 +90,21 @@ router.post('/yelpFetch/:location', function(req, res, next) {
 	});
 
 	yelp.search({ term: 'bar', location: req.params.location })
-	.then(function (data) {
-	  res.send(data);
+	.then(function(yelpRes) {
+		// place yelp business info on req
+		req.body = yelpRes.businesses;
+		// get attendee counts for each venue, 
+		// and check if the client is among those attending
+		getAttendees(req, function(venueList) {
+			res.send(venueList);
+		});
 	})
-	.catch(function (err) {
+	.catch(function(err) {
 	  next(err);
 	});
 });
 
-router.post('/getAttendees', function(req, res, next) {
-	// extract the venues information from the Yelp API data
-	req.body = req.body.data.businesses;
-	// get attendee counts for each venue, 
-	// and check if the client is among those attending
-	getAttendees(req, function(venueList) {
-		res.send(venueList);
-	});
-});
-
-router.post('/attending', function(req, res, next) {
+router.post('/attending', routeChecks.loggedIn, function(req, res, next) {
 	// update venue-attendees in db with client info (add or remove)
 	// then call getAttendees for updated attendee counts at venues
 	updateAttendees(req, function() {				
