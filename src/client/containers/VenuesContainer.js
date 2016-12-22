@@ -25,16 +25,11 @@ var VenuesContainer = React.createClass({
 
 		// fetch venue info for city provided
 		axios.post('/yelpFetch/' + this.props.params.location)
-		.then(function(yelpRes) {
-			// add venue attendee counts from the database
-			// to the yelp data
-			axios.post('/getAttendees', yelpRes)
-			.then(function(attendeeRes) {
-				this.setState({
-					loading: false,
-					venueList: attendeeRes.data
-				});
-			}.bind(this));
+		.then(function(yelpRes) {			
+			this.setState({
+				loading: false,
+				venueList: yelpRes.data
+			});			
 		}.bind(this));
 	},
 	handleYelpSearch: function(e) {		
@@ -52,13 +47,10 @@ var VenuesContainer = React.createClass({
 				this.context.router.push('/venues/' + searchValue);
 				// add venue attendee counts from the database
 				// to the yelp data
-				axios.post('/getAttendees', yelpRes)
-				.then(function(attendeeRes) {
-					this.setState({
-						loading: false,
-						venueList: attendeeRes.data
-					});
-				}.bind(this));
+				this.setState({
+					loading: false,
+					venueList: yelpRes.data
+				});
 			}.bind(this));
 		}
 	},
