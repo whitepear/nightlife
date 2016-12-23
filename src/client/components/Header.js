@@ -6,15 +6,12 @@ function Header(props) {
 		<div className="nav-custom">
 			<div className="nav-logo">nite<span>Life</span></div>
 			<div className="nav-links">
-				<Link to={'/register?prevPath=' + props.pathname}>Register</Link>
-				<Link to={'/login?prevPath=' + props.pathname}>Login</Link>										
+				<Link to='/'>Home</Link>
+				<Link to='/register'>Register</Link>
+				<Link to='/login'>Login</Link>										
 			</div>
 		</div>
 	)	
 }
-
-Header.propTypes = {
-	pathname: React.PropTypes.string.isRequired
-};
 
 module.exports = Header;

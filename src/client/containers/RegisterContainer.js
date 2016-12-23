@@ -24,7 +24,7 @@ var RegisterContainer = React.createClass({
 	},
 	handleRegSubmit: function(e) {
 		e.preventDefault();
-		var prevPath = this.props.location.query.prevPath;
+		var prevPath = this.props.prevPath;
 		
 		var validationResult = registrationValidation(this.state);
 		if (validationResult.validationPassed) {
@@ -42,7 +42,7 @@ var RegisterContainer = React.createClass({
 							validationMessage: res.data.serverValidationMessage
 						}, function() {
 							setTimeout(function() {
-								if (prevPath === undefined || prevPath === '/login') {
+								if (/venues/.test(prevPath) === false) {
 									this.context.router.push('/');
 								} else {
 									this.context.router.push(prevPath);

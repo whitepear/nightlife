@@ -2,12 +2,22 @@ var React = require('react');
 var Header = require('../components/Header.js');
 
 var MainContainer = React.createClass({
+	getInitialState: function() {
+		return {
+			prevPath: '/'
+		};
+	},
+	componentWillReceiveProps: function(nextProps) {
+		this.setState({
+			prevPath: this.props.location.pathname
+		});
+	},
 	render: function() {
 		return (
 			<div>
-				<Header pathname={this.props.location.pathname} />		
+				<Header />		
 				<div className="container">						
-					{this.props.children}							
+					{React.cloneElement(this.props.children, { prevPath: this.state.prevPath })}							
 				</div>
 			</div>
 		)

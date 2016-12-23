@@ -22,7 +22,7 @@ var LoginContainer = React.createClass({
 	},
 	handleLoginSubmit: function(e) {
 		e.preventDefault();
-		var prevPath = this.props.location.query.prevPath;
+		var prevPath = this.props.prevPath;
 
 		var validationResult = loginValidation(this.state);
 		if (validationResult.validationPassed) {			
@@ -35,7 +35,7 @@ var LoginContainer = React.createClass({
 					if (res.data.serverValidationPassed) {
 						// validation passed, now logged in
 						// redirect user
-						if (prevPath === undefined || prevPath === '/register') {
+						if (/venues/.test(prevPath) === false) {
 							this.context.router.push('/');
 						} else {
 							this.context.router.push(prevPath);
