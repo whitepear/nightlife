@@ -1,6 +1,6 @@
 var bcrypt = require('bcryptjs');
 
-function registerUser(userInfo, db, callback) {
+function registerUser(userInfo, req, callback) {
 
 	// generate hashed & salted pass
 	bcrypt.hash(userInfo.password, 10, function(err, hash) {
@@ -18,8 +18,10 @@ function registerUser(userInfo, db, callback) {
 		};
 
 		// insert into db
-		db.collection('users').insertOne(userDocument)
+		req.db.collection('users').insertOne(userDocument)
 		.then(function(result) {
+			// log user in
+			req.session.userId = result.ops[0]._id;
 			callback(null);
 		})
 		.catch(function(err) {

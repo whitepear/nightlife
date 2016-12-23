@@ -27,7 +27,7 @@ router.post('/register', routeChecks.loggedOut, routeChecks.sanitizeUserInput, f
 
 	registrationValidation(userInfo, req.db, function(validationPassed, failMessage) {		
 		if (validationPassed) {
-			registerUser(userInfo, req.db, function(err) {
+			registerUser(userInfo, req, function(err) {
 				if (err) {
 					res.json({
 						serverValidationMessage: 'A server error occurred while attempting to register your information.\nPlease try again later.',
