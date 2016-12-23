@@ -10,19 +10,10 @@ var VenuesContainer = React.createClass({
 		return {	
 			loading: true,
 			attendingLoading: false,
-			loggedIn: false,
 			venueList: []
 		}
 	},
 	componentDidMount: function() {
-		// check if user is logged in
-		axios.post('/checkLoginStatus')
-		.then(function(loginRes) {
-			this.setState({
-				loggedIn: loginRes.data
-			});
-		}.bind(this));
-
 		// fetch venue info for city provided
 		axios.post('/yelpFetch/' + this.props.params.location)
 		.then(function(yelpRes) {			
@@ -61,7 +52,7 @@ var VenuesContainer = React.createClass({
 	},
 	handleAttendingClick: function(e) {
 		// this function adds/removes the user from a venue's attendee count
-		if (this.state.loggedIn) {
+		if (this.props.loggedIn) {
 			e.persist();
 			this.setState({
 				attendingLoading: true
