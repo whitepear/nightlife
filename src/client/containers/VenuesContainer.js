@@ -35,9 +35,7 @@ var VenuesContainer = React.createClass({
 			axios.post('/yelpFetch/' + searchValue)
 			.then(function(yelpRes) {
 				// update url with new city
-				this.context.router.push('/venues/' + searchValue);
-				// add venue attendee counts from the database
-				// to the yelp data
+				this.context.router.push('/venues/' + searchValue);				
 				this.setState({
 					loading: false,
 					venueList: yelpRes.data
