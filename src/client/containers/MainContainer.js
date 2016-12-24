@@ -9,8 +9,17 @@ var MainContainer = React.createClass({
 			loggedIn: false
 		};
 	},
-	componentWillReceiveProps: function(nextProps) {
+	componentDidMount: function() {
 		// check if user is logged in
+		axios.post('/checkLoginStatus')
+		.then(function(loginRes) {
+			this.setState({
+				loggedIn: loginRes.data
+			});
+		}.bind(this));
+	},
+	componentWillReceiveProps: function(nextProps) {
+		// check if user is still logged in
 		axios.post('/checkLoginStatus')
 		.then(function(loginRes) {
 			this.setState({
