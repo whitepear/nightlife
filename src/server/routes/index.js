@@ -71,6 +71,17 @@ router.post('/login', routeChecks.loggedOut, routeChecks.sanitizeUserInput, func
 	});
 });
 
+router.post('/logOut', function(req, res, next) {
+	if (req.session) {
+    // delete session object
+    req.session.destroy(function(err) {
+			if (err) {
+        return next(err);
+      }
+    });
+	}
+});
+
 router.post('/checkLoginStatus', function(req, res, next) {
 	if (req.session && req.session.userId) {
 		res.send(true);

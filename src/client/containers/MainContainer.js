@@ -32,10 +32,18 @@ var MainContainer = React.createClass({
 			prevPath: this.props.location.pathname
 		});
 	},
+	handleLogOut: function() {
+		axios.post('/logOut')
+		.then(function() {
+			this.setState({
+				loggedIn: false
+			});
+		});
+	},
 	render: function() {
 		return (
 			<div>
-				<Header loggedIn={this.state.loggedIn} />		
+				<Header loggedIn={this.state.loggedIn} onLogOut={this.handleLogOut} />		
 				<div className="container">						
 					{React.cloneElement(this.props.children, { prevPath: this.state.prevPath, loggedIn: this.state.loggedIn })}							
 				</div>
