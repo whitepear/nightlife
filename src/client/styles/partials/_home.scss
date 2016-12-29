@@ -40,14 +40,8 @@
 
 // Medium Styles
 @media (min-width: 992px) and (max-width: 1199px) {
-	.home-prompt {
-		font-size: 80px;
-	}
-
-	.home-input {
-		width: 550px;
-		font-size: 52px;
-		margin-top: 300px;
+	.home-bg {
+		background: url(images/red_gig_md.jpg);
 	}
 }
 
@@ -56,6 +50,10 @@
 	.home-container {
 		margin-top: 50px;
 		margin-bottom: 75px;
+	}
+
+	.home-bg {
+		background: url(images/red_gig_sm.jpg);
 	}
 
 	.home-prompt {
@@ -74,6 +72,10 @@
 	.home-container {
 		margin-top: 0px;
 		margin-bottom: 75px;
+	}
+
+	.home-bg {
+		background: url(images/red_gig_xs.jpg);
 	}
 
 	.home-prompt {

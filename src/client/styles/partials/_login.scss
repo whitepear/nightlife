@@ -7,3 +7,26 @@
 	top: 0;
 	bottom: 0;
 }
+
+// MEDIA QUERIES
+
+// Medium Styles
+@media (min-width: 992px) and (max-width: 1199px) {
+	.login-bg {
+		background: url(images/lights_md.jpg);
+	}
+}
+
+// Small Styles
+@media (min-width: 768px) and (max-width: 991px) {
+	.login-bg {
+		background: url(images/lights_sm.jpg);
+	}
+}
+
+// Extra Small Styles
+@media (max-width: 767px) {
+	.login-bg {
+		background: url(images/lights_xs.jpg);
+	}
+}
