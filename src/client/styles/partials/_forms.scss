@@ -28,3 +28,30 @@ label {
 	font-size: 20px;
 	font-weight: bold;
 }
+
+
+// MEDIA QUERIES
+
+// Responsive Styles
+@media (min-width: 0px) and (max-width: 1199px) {
+	form {
+		margin-bottom: 50px;
+	}
+
+	.form-header {
+		font-size: 62px;
+	}	
+	
+	label {
+		font-size: 22px;
+	}
+
+	.form-control {
+    height: 40px;
+  	font-size: 20px;
+	}
+
+	.form-submit {
+		font-size: 18px;
+	}	
+}
