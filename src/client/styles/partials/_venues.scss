@@ -55,3 +55,57 @@
   font-size: 54px;
   margin-bottom: 50px;
 }
+
+// MEDIA QUERIES
+
+// Medium Styles
+@media (min-width: 992px) and (max-width: 1199px) {
+  .search-icon {
+    left: 706px;
+  }
+}
+
+// Small Styles
+@media (min-width: 768px) and (max-width: 991px) {
+  .search-icon {
+    left: 596px;
+  }
+
+  .venues-header {
+    font-size: 44px;
+    margin-bottom: 42px;
+  }
+}
+
+// Extra Small Styles
+@media (max-width: 767px) {
+  .venues-container {
+    margin-bottom: 75px;
+  }
+
+  .venues-input-container {
+    position: relative;
+  }
+
+  .search-icon {
+    position: absolute;
+    top: -12%;
+    left: 84%;
+  }
+
+  .venues-header {
+    margin-top: 135px;
+    font-size: 36px;
+    margin-bottom: 42px;
+  }
+}
+
+@media (max-width: 550px) {
+  .venues-search {
+    font-size: 20px;
+  }
+  
+  .search-icon {
+    display: none;
+  }
+}

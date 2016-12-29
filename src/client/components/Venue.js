@@ -19,7 +19,7 @@ function Venue(props) {
 				<a href={props.venue.url} target="_blank">	
 					<div className="venue-title">{props.venue.name}</div>
 				</a> 
-				<img src={props.venue.rating_img_url} alt="Venue rating."/>
+				<img src={props.venue.rating_img_url} className="rating-img" alt="Venue rating."/>
 				<button id={props.venue.id} className={"btn attending-btn" + attendingClass} onClick={props.onAttendingClick} disabled={props.attendingLoading}>{props.venue.attendeeCount} Going</button>
 				<div className="venue-snippet">{props.venue.snippet_text}</div>
 			</div>
