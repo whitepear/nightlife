@@ -34,3 +34,56 @@
 .home-input::-webkit-input-placeholder {
   color: rgba(255, 255, 255, 0.55);
 }
+
+
+// MEDIA QUERIES
+
+// Medium Styles
+@media (min-width: 992px) and (max-width: 1199px) {
+	.home-prompt {
+		font-size: 80px;
+	}
+
+	.home-input {
+		width: 550px;
+		font-size: 52px;
+		margin-top: 300px;
+	}
+}
+
+// Small Styles
+@media (min-width: 768px) and (max-width: 991px) {
+	.home-container {
+		margin-top: 50px;
+		margin-bottom: 75px;
+	}
+
+	.home-prompt {
+		font-size: 70px;
+	}
+
+	.home-input {
+		width: 450px;
+		font-size: 42px;
+		margin-top: 250px;
+	}
+}
+
+// Extra Small Styles
+@media (max-width: 767px) {
+	.home-container {
+		margin-top: 0px;
+		margin-bottom: 75px;
+	}
+
+	.home-prompt {
+		font-size: 60px;
+	}
+
+	.home-input {
+		width: 98%;
+		max-width: 350px;
+		font-size: 32px;
+		margin-top: 200px;
+	}
+}
