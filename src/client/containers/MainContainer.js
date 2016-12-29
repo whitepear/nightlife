@@ -6,7 +6,8 @@ var MainContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			prevPath: '/',
-			loggedIn: false
+			loggedIn: false,
+			showDropdown: false
 		};
 	},
 	componentDidMount: function() {
@@ -29,7 +30,8 @@ var MainContainer = React.createClass({
 
 		// store previous path for intelligent redirects on login or registration
 		this.setState({
-			prevPath: this.props.location.pathname
+			prevPath: this.props.location.pathname,
+			showDropdown: false
 		});
 	},
 	handleLogOut: function() {
@@ -40,10 +42,19 @@ var MainContainer = React.createClass({
 			});
 		});
 	},
+	handleDropdownToggle: function() {
+		this.setState({
+			showDropdown: !this.state.showDropdown
+		});
+	},
 	render: function() {
 		return (
 			<div>
-				<Header loggedIn={this.state.loggedIn} onLogOut={this.handleLogOut} />		
+				<Header 
+					loggedIn={this.state.loggedIn} 
+					onLogOut={this.handleLogOut}
+					onDropdownToggle={this.handleDropdownToggle}
+					showDropdown={this.state.showDropdown} />		
 				<div className="container">						
 					{React.cloneElement(this.props.children, { prevPath: this.state.prevPath, loggedIn: this.state.loggedIn })}							
 				</div>

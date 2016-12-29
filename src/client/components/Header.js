@@ -13,7 +13,13 @@ function Header(props) {
 	return (
 		<div className="nav-custom">
 			<div className="nav-logo">nite<span>Life</span></div>
-			<div className="nav-links">
+			<div className="nav-links hidden-xs">
+				<IndexLink to='/' activeClassName="active-nav-link">Home</IndexLink>
+				<Link to='/register' activeClassName="active-nav-link" className={props.loggedIn ? 'hidden' : ''}>Register</Link>
+				{LoginLink}
+			</div>
+			<div className="dropdown-button-custom" onClick={props.onDropdownToggle}>Menu</div>
+			<div className={"dropdown-menu-custom" + (props.showDropdown ? ' dropdown-expanded-custom' : '')}>
 				<IndexLink to='/' activeClassName="active-nav-link">Home</IndexLink>
 				<Link to='/register' activeClassName="active-nav-link" className={props.loggedIn ? 'hidden' : ''}>Register</Link>
 				{LoginLink}
@@ -24,7 +30,9 @@ function Header(props) {
 
 Header.propTypes = {
 	loggedIn: PropTypes.bool.isRequired,
-	onLogOut: PropTypes.func.isRequired
+	onLogOut: PropTypes.func.isRequired,
+	onDropdownToggle: PropTypes.func.isRequired,
+	showDropdown: PropTypes.bool.isRequired
 };
 
 module.exports = Header;
