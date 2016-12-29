@@ -21,7 +21,7 @@ function Register(props) {
 			  </div>
 			  <div className="form-group">
 			    <label htmlFor="registerPasswordRepeat">Repeat Password:</label>
-			    <input type="password" className="form-control" id="registerPasswordRepeat" onChange={props.onFieldChange} placeholder="Passwords may only contain letters and numbers." required />
+			    <input type="password" className="form-control" id="registerPasswordRepeat" onChange={props.onFieldChange} placeholder="Letters & numbers only." required />
 			  </div>
 			  <div className={(props.validationMessage ? 'show ' : '') + "registration-message"}>
 					{props.validationMessage}
