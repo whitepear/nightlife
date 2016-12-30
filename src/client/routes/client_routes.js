@@ -9,6 +9,7 @@ var HomeContainer = require('../containers/HomeContainer.js');
 var LoginContainer = require('../containers/LoginContainer.js');
 var RegisterContainer = require('../containers/RegisterContainer.js');
 var VenuesContainer = require('../containers/VenuesContainer.js');
+var NotFound = require('../components/NotFound.js');
 
 var routes = (
 	<Router history={browserHistory}>
@@ -16,7 +17,8 @@ var routes = (
 			<IndexRoute component={HomeContainer} />
 			<Route path='login' component={LoginContainer} />	
 			<Route path='register' component={RegisterContainer} />
-			<Route path='venues/:location' component={VenuesContainer} />		
+			<Route path='venues/:location' component={VenuesContainer} />
+			<Route path="*" component={NotFound} />		
 		</Route>
 	</Router>
 );
