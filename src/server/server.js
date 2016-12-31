@@ -19,7 +19,7 @@ app.use(function(req, res, next) {
 
 app.use(session({
   secret: 'secret_placeholder',
-  store: new MongoStore({url: 'mongodb://localhost:27017/nightlife'}),
+  store: new MongoStore({url: process.env.MONGODB_URI || 'mongodb://localhost:27017/nightlife'}),
   resave: true,
   saveUninitialized: false
 }));
@@ -34,11 +34,11 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Utilise connection pooling, initialise app after db connection
 // & session-store is established
-MongoClient.connect('mongodb://localhost:27017/nightlife', function(err, database) {
+MongoClient.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/nightlife', function(err, database) {
   if(err) throw err;
 
   db = database;
-  app.listen(3000, console.log('Server is running...'));  
+  app.listen(process.env.PORT || 3000, console.log('Server is running...'));  
 });
 
 app.use('/', routes);
