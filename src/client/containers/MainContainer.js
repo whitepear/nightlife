@@ -1,6 +1,7 @@
 var React = require('react');
 var Header = require('../components/Header.js');
 var axios = require('axios');
+var changeBodyBackground = require('../utils/changeBodyBackground.js');
 
 var MainContainer = React.createClass({
 	getInitialState: function() {
@@ -18,6 +19,11 @@ var MainContainer = React.createClass({
 				loggedIn: loginRes.data
 			});
 		}.bind(this));
+		
+		// set body background image
+		changeBodyBackground(this.props.location.pathname, function(backgroundImage) {
+			document.body.style.backgroundImage = backgroundImage;
+		});
 	},
 	componentWillReceiveProps: function(nextProps) {
 		// check if user is still logged in
@@ -32,6 +38,11 @@ var MainContainer = React.createClass({
 		this.setState({
 			prevPath: this.props.location.pathname,
 			showDropdown: false
+		});
+		
+		// update body background-image
+		changeBodyBackground(nextProps.location.pathname, function(backgroundImage) {
+			document.body.style.backgroundImage = backgroundImage;
 		});
 	},
 	handleLogOut: function() {
