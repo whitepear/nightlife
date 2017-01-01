@@ -11,7 +11,9 @@ var HomeContainer = React.createClass({
 		};
 	},
 	componentDidMount: function() {
-		document.getElementById('homeInput').focus();
+		if (window.innerWidth > 1024) {
+			document.getElementById('homeInput').focus();
+		}		
 	},
 	handleUpdate: function(e) {
 		// update location with input text
