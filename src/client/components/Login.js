@@ -4,7 +4,6 @@ var PropTypes = React.PropTypes;
 function Login(props) {
 	return (
 		<div>
-			<div className="login-bg"></div>	
 			<h1 className="form-header">Login</h1>	
 			<form action="/login" method="POST" onSubmit={props.onLoginSubmit}>
 				<div className="form-group">

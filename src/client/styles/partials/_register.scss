@@ -1,38 +1,4 @@
-.register-bg {
-	position: fixed;
-	background: url(images/town.jpg);
-	z-index: -5;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
 .registration-message {
 	font-size: 22px;
 	margin-bottom: 20px;
-}
-
-
-// MEDIA QUERIES
-
-// Medium Styles
-@media (min-width: 992px) and (max-width: 1199px) {
-	.register-bg {
-		background: url(images/town_md.jpg);
-	}
-}
-
-// Small Styles
-@media (min-width: 768px) and (max-width: 991px) {
-	.register-bg {
-		background: url(images/town_sm.jpg);
-	}
-}
-
-// Extra Small Styles
-@media (max-width: 767px) {
-	.register-bg {
-		background: url(images/town_xs.jpg);
-	}
 }

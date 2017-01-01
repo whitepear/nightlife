@@ -4,16 +4,6 @@
 	text-align: center;	
 }
 
-.home-bg {
-	position: fixed;
-	background: url(images/red_gig.jpg);
-	z-index: -5;
-	left: 0;
-	right: 0;
-	top: 0;
-	bottom: 0;
-}
-
 .home-prompt {
 	font-size: 102px;	
 	font-family: Kirvy-Thin;
@@ -38,22 +28,11 @@
 
 // MEDIA QUERIES
 
-// Medium Styles
-@media (min-width: 992px) and (max-width: 1199px) {
-	.home-bg {
-		background: url(images/red_gig_md.jpg);
-	}
-}
-
 // Small Styles
 @media (min-width: 768px) and (max-width: 991px) {
 	.home-container {
 		margin-top: 50px;
 		margin-bottom: 75px;
-	}
-
-	.home-bg {
-		background: url(images/red_gig_sm.jpg);
 	}
 
 	.home-prompt {
@@ -72,10 +51,6 @@
 	.home-container {
 		margin-top: 0px;
 		margin-bottom: 75px;
-	}
-
-	.home-bg {
-		background: url(images/red_gig_xs.jpg);
 	}
 
 	.home-prompt {

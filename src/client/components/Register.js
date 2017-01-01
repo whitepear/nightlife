@@ -4,7 +4,6 @@ var PropTypes = React.PropTypes;
 function Register(props) {
 	return (
 		<div>
-			<div className="register-bg"></div>
 			<h1 className="form-header">Register</h1>			
 			<form action="/register" method="POST" onSubmit={props.onRegSubmit}>
 				<div className="form-group">

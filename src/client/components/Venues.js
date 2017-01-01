@@ -13,7 +13,6 @@ function Venues(props) {
 									 			});
 	return (
 		<div className="venues-container">	
-			<div className="venues-bg"></div>		
 			<div className="venues-input-container">
 				<input className="venues-search" id="venuesSearchBar" disabled={props.loading || props.attendingLoading} onKeyPress={props.onEnter} placeholder="Check another location" type="text" />
 				<div className="search-icon" onClick={props.onYelpSearch}>&#xf002;</div>
