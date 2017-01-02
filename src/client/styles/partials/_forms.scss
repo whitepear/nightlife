@@ -33,7 +33,9 @@ label {
 // MEDIA QUERIES
 
 // Responsive Styles
-@media (min-width: 0px) and (max-width: 991px) {
+
+// Small Styles
+@media (min-width: 768px) and (max-width: 991px) {
 	form {
 		margin-bottom: 50px;
 	}
@@ -54,4 +56,30 @@ label {
 	.form-submit {
 		font-size: 18px;
 	}	
+}
+
+// Extra-Small styles
+@media (max-width: 767px) {
+	form {
+		margin-bottom: 50px;
+	}
+
+	.form-header {
+		font-size: 50px;
+		margin-top: 10px;
+		margin-bottom: 35px;
+	}
+	
+	label {
+		font-size: 22px;
+	}
+
+	.form-control {
+    height: 40px;
+  	font-size: 20px;
+	}
+
+	.form-submit {
+		font-size: 18px;
+	}		
 }
