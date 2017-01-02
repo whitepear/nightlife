@@ -26,7 +26,7 @@ function changeBodyBackground(currentPath, callback) {
 	} else if (currentPath === '/login') {
 		imageUrl = 'lights';
 	} else {
-		imageUrl = 'stardust.png';
+		imageUrl = '/stardust.png';
 	}
 	
 	// complete image filename based on window size 
