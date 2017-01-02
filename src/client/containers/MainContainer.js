@@ -2,13 +2,15 @@ var React = require('react');
 var Header = require('../components/Header.js');
 var axios = require('axios');
 var changeBodyBackground = require('../utils/changeBodyBackground.js');
+var getDeviceWidth = require('../utils/getDeviceWidth.js');
 
 var MainContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			prevPath: '/',
 			loggedIn: false,
-			showDropdown: false
+			showDropdown: false,
+			deviceWidth: getDeviceWidth()
 		};
 	},
 	componentDidMount: function() {
@@ -24,6 +26,9 @@ var MainContainer = React.createClass({
 		changeBodyBackground(this.props.location.pathname, function(backgroundImage) {
 			document.body.style.backgroundImage = backgroundImage;
 		});
+		
+		// add a debounced method to check window size on resize
+		window.addEventListener("resize", this.checkScreenSize);
 	},
 	componentWillReceiveProps: function(nextProps) {
 		// check if user is still logged in
@@ -57,6 +62,26 @@ var MainContainer = React.createClass({
 		this.setState({
 			showDropdown: !this.state.showDropdown
 		});
+	},
+	checkScreenSize: function() {
+		// this method is essentially a debounced call to getDeviceWidth.
+		// this method changes the body background depending on screen width,
+		// similar to a css media-query. it is called whenever the window is resized.
+		clearTimeout(checkScreenTimeout);
+		var checkScreenTimeout = setTimeout(function() {
+			// get string representation of device width (Large, Medium, Small, Extra-Small)
+			var currentDeviceWidth = getDeviceWidth();
+			if (this.state.deviceWidth !== currentDeviceWidth) {
+				// update state with new deviceWidth
+				this.setState({
+					deviceWidth: currentDeviceWidth
+				});
+				// update body background with correctly-sized image
+				changeBodyBackground(this.props.location.pathname, function(backgroundImage) {
+					document.body.style.backgroundImage = backgroundImage;
+				});				
+			}
+		}.bind(this), 250);
 	},
 	render: function() {
 		return (

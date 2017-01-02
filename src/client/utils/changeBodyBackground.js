@@ -12,9 +12,13 @@ require('../styles/images/town_sm.jpg');
 require('../styles/images/town_xs.jpg');
 require('../styles/images/stardust.png');
 
+// This function returns a url to a background image, based
+// on the current-path and the window width.
+
 function changeBodyBackground(currentPath, callback) {
 	var imageUrl;
-
+	
+	// select image filename based on path
 	if (currentPath === '/') {
 		imageUrl = 'red_gig';
 	} else if (currentPath === '/register') {
@@ -24,7 +28,8 @@ function changeBodyBackground(currentPath, callback) {
 	} else {
 		imageUrl = 'stardust.png';
 	}
-
+	
+	// complete image filename based on window size 
 	if (/venues/.test(currentPath) === false) {
 		var innerWidth = window.innerWidth;
 		if (innerWidth > 1199) {
