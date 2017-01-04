@@ -31,6 +31,10 @@
 		color: #eee;
 		box-shadow: 0px 0px 4px 0px rgba(240,90,1,1);
 	}
+
+	&:active {
+		background: linear-gradient(#f05a01, #f07a01);
+	}
 }
 
 .client-attending {
@@ -38,6 +42,7 @@
 
 	&:hover, &:active, &:focus {
 		box-shadow: 0px 0px 4px 0px rgba(1,177,54,1);
+		background: linear-gradient(#01B136, #3ECE01);
 	}
 }
 
