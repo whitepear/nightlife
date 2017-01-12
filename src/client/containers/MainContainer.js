@@ -27,7 +27,7 @@ var MainContainer = React.createClass({
 			document.body.style.backgroundImage = backgroundImage;
 		});
 		
-		// add a debounced method to check window size on resize
+		// add a method to check window size on resize
 		window.addEventListener("resize", this.checkScreenSize);
 	},
 	componentWillReceiveProps: function(nextProps) {
@@ -64,24 +64,21 @@ var MainContainer = React.createClass({
 		});
 	},
 	checkScreenSize: function() {
-		// this method is essentially a debounced call to getDeviceWidth.
 		// this method changes the body background depending on screen width,
 		// similar to a css media-query. it is called whenever the window is resized.
-		clearTimeout(checkScreenTimeout);
-		var checkScreenTimeout = setTimeout(function() {
-			// get string representation of device width (Large, Medium, Small, Extra-Small)
-			var currentDeviceWidth = getDeviceWidth();
-			if (this.state.deviceWidth !== currentDeviceWidth) {
-				// update state with new deviceWidth
-				this.setState({
-					deviceWidth: currentDeviceWidth
-				});
-				// update body background with correctly-sized image
-				changeBodyBackground(this.props.location.pathname, function(backgroundImage) {
-					document.body.style.backgroundImage = backgroundImage;
-				});				
-			}
-		}.bind(this), 250);
+		
+		// get string representation of device width (Large, Medium, Small, Extra-Small)
+		var currentDeviceWidth = getDeviceWidth();
+		if (this.state.deviceWidth !== currentDeviceWidth) {
+			// update state with new deviceWidth
+			this.setState({
+				deviceWidth: currentDeviceWidth
+			});
+			// update body background with correctly-sized image
+			changeBodyBackground(this.props.location.pathname, function(backgroundImage) {
+				document.body.style.backgroundImage = backgroundImage;
+			});				
+		}
 	},
 	render: function() {
 		return (
