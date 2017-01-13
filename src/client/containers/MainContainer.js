@@ -3,6 +3,7 @@ var Header = require('../components/Header.js');
 var axios = require('axios');
 var changeBodyBackground = require('../utils/changeBodyBackground.js');
 var getDeviceWidth = require('../utils/getDeviceWidth.js');
+var underscoreDebounce = require('../utils/underscoreDebounce.js');
 
 var MainContainer = React.createClass({
 	getInitialState: function() {
@@ -27,7 +28,8 @@ var MainContainer = React.createClass({
 			document.body.style.backgroundImage = backgroundImage;
 		});
 		
-		// add a method to check window size on resize
+		// add a debounced method to check window size on resize
+		this.checkScreenSize = underscoreDebounce(this.checkScreenSize, 200);
 		window.addEventListener("resize", this.checkScreenSize);
 	},
 	componentWillReceiveProps: function(nextProps) {
@@ -66,7 +68,8 @@ var MainContainer = React.createClass({
 	checkScreenSize: function() {
 		// this method changes the body background depending on screen width,
 		// similar to a css media-query. it is called whenever the window is resized.
-		
+		// it is debounced within componentDidMount.
+
 		// get string representation of device width (Large, Medium, Small, Extra-Small)
 		var currentDeviceWidth = getDeviceWidth();
 		if (this.state.deviceWidth !== currentDeviceWidth) {
