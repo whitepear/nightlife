@@ -7,11 +7,11 @@ function Login(props) {
 			<h1 className="form-header">Login</h1>	
 			<form action="/login" method="POST" onSubmit={props.onLoginSubmit}>
 				<div className="form-group">
-					<label htmlFor="login-username">Username:</label>
+					<label htmlFor="loginUsername">Username:</label>
 	    		<input type="text" className="form-control" id="loginUsername" onChange={props.onFieldChange} required />
 				</div>
 				<div className="form-group">
-			    <label htmlFor="login-password">Password:</label>
+			    <label htmlFor="loginPassword">Password:</label>
 			    <input type="password" className="form-control" id="loginPassword" onChange={props.onFieldChange} required />
 			  </div>
 			  <div className={(props.validationMessage ? 'show ' : '') + "registration-message"}>
