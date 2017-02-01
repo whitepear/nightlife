@@ -3,7 +3,7 @@ var bcrypt = require('bcryptjs');
 function registerUser(userInfo, req, callback) {
 
 	// generate hashed & salted pass
-	bcrypt.hash(userInfo.password, 10, function(err, hash) {
+	bcrypt.hash(userInfo.password, 12, function(err, hash) {
 		if (err) {
 			console.log('Hashing error: ', err);
 			callback(err);
